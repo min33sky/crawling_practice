@@ -4,8 +4,8 @@ import pyautogui
 
 header = {'User-agent': 'Mozilla/5.0'}
 
-keyword = input()
-# keyword = pyautogui.prompt('검색어를 입력하세요')
+# keyword = input()
+keyword = pyautogui.prompt('검색어를 입력하세요')
 
 for i in range(3):
     response = requests.get(
