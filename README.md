@@ -7,6 +7,8 @@
 pip install requests
 # HTML Parsing
 pip install beautifulsoup4
+# lxml (bs4의 html parser)
+pip install lxml
 # Excel
 pip install openpyxl
 # selenium
