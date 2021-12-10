@@ -13,17 +13,31 @@ soup = BeautifulSoup(res.text, 'lxml')
 # 정규표현식을 사용해서 속성을 검색할 수 있다.
 items = soup.find_all('li', attrs={'class': re.compile('^search-product')})
 
+
 for item in items:
+
+    # 광고 제품 제외
+    ad_badge = item.find('span', attrs={'class': 'ad-badge-text'})
+    if ad_badge:
+        print(' < 광고 제품이므로 쳐내겠습니다. >')
+        continue
+
     name = item.find('div', attrs={'class': 'name'}).get_text()
+
+    if 'Apple' in name:
+        print(' < Apple MacBook Out!!! >')
+        continue
+
     price = item.find('strong', attrs={'class': 'price-value'}).get_text()
 
     # 평점이 없는 상품일 경우의 예외 처리
     try:
         rate = item.find('em', attrs={'class': 'rating'}).get_text()
         rate_count = item.find(
-            'span', attrs={'class': 'rating-total-count'}).get_text()
+            'span', attrs={'class': 'rating-total-count'}).get_text()[1:-1]
     except:
-        rate = '평점 없음'
-        rate_count = '(0)'
+        print(' < 평점 없는 제품은 쳐냅니다. >')
+        continue
 
-    print(f'{name}: {price} - 평점: {rate}, {rate_count}')
+    if float(rate) >= 4.5 and int(rate_count) >= 500:
+        print(f'{name}: {price} - 평점: {rate}, {rate_count}')
