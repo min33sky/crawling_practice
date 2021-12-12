@@ -1,4 +1,3 @@
-from os import truncate
 from selenium import webdriver
 
 from selenium.webdriver.common.keys import Keys
@@ -92,8 +91,6 @@ try:
     elem = WebDriverWait(browser, 10).until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, '.autocomplete_input__1vVkF')))
 
-    print(elem)
-
     elem.click()
     elem.send_keys('하네다국제공항')
 
@@ -107,9 +104,13 @@ try:
     browser.find_element(
         By.CSS_SELECTOR, 'button.searchBox_search__2KFn3').click()
 
-    # div.result
-    result = WebDriverWait(browser, 10).until(EC.presence_of_element_located(
-        (By.CSS_SELECTOR, 'div.result')))
+    # 항공권 목록 로딩이 다 될때가지 기다린다.
+    time.sleep(15)
+
+    # result = WebDriverWait(browser, 10).until(EC.presence_of_element_located(
+    #     (By.CSS_SELECTOR, 'div.result')))
+
+    result = browser.find_element(By.CSS_SELECTOR, 'div.result')
 
     print(result.text)
 
