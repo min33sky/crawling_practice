@@ -26,4 +26,11 @@ with open('movie.html', 'w', encoding='utf8') as f:
 
 for movie in movies:
     title = movie.select_one('div.WsMG1c.nnK0zc')
-    print(title.get_text())
+    print(f'영화 제목 : {title.get_text()}')
+
+    # 할인 가격 span.SUZt4c.djCuy
+
+    #  가격 span.VfPpfd.ZdBevf.i5DZme
+    original_price = movie.select_one('span.VfPpfd.ZdBevf.i5DZme').get_text()
+    print(f'영화 가격: {original_price} ')
+    print('='*100)
