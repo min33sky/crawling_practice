@@ -13,6 +13,8 @@ pip install lxml
 pip install openpyxl
 # selenium
 pip install selenium
+# selenium webdriver
+pip install webdriver-manager
 # pyautogui
 pip install pyautogui
 ```
